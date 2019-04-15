@@ -12,7 +12,7 @@ Efficient Nonmyopic Batch Active Search. NeurIPS 2018. https://papers.nips.cc/pa
 A 3-minute video introducing efficient nonmyopic batch active search: https://www.youtube.com/watch?v=9y1HNY95LzY&feature=youtu.be
 
 # How to use
-Download the code and run `demo.m` in Matlab to see how to use it.
+Download the code and run `demo.m` in Matlab to see how to use it. Change parameter settings to try different datasets and policies. 
 
 # Dependencies
 Active learning toolbox: https://github.com/rmgarnett/active_learning.git 
