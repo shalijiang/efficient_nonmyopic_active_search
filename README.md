@@ -16,5 +16,7 @@ Download the code and run `demo.m` in Matlab to see how to use it.
 
 # Dependencies
 Active learning toolbox: https://github.com/rmgarnett/active_learning.git 
+
 Active search toolbox: https://github.com/rmgarnett/active_search.git 
+
 For drug discovery datasets: https://github.com/rmgarnett/active_virtual_screening.git
