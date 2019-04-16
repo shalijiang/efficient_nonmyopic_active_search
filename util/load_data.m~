@@ -8,8 +8,7 @@ end
 switch data_name
   
   case {'toy_problem0', 'toy_problem1'}
-    % toy 2D grid problem with deterministic(toy_problem0) or 
-    % probabilistic(toy_problem1) labels
+    % toy 2D grid problem with deterministic(0) or probabilistic(1) labels
     data_dir = fullfile(data_dir, 'toy_problem');
     data_path = fullfile(data_dir, data_name);
     load(data_path(1:end-1));

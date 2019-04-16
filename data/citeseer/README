@@ -1,0 +1,3 @@
+run prepare_venue_subgraph.m to generate the citeseer dataset; it reads "./edge_list" and "./labels"
+
+"./venue_names" contains the names of publication venues in the citation network

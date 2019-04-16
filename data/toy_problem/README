@@ -1,0 +1,8 @@
+run generate_world_driver.m to generate toy_problem.mat
+
+It is the 2D world on grid; labels are generated using a Gaussian process + normcdf.
+First a 2D function is sampled from the Gaussian process, then the function values are squashed using normcdf to get the probabilities of being positive.
+
+There are two ways to generate the binary labels:
+* deterministic labels: fixed a threshold (0.7), and set the label to be positive if the probability is greater than the threshold
+* probabilistic labels: uniformly randomly sample a number from [0,6], and a point is set positive if the probability is greater than the random number

@@ -39,6 +39,7 @@ function plotting_callback(problem, train_ind, observed_labels, labels)
     'this batch', 'Location', 'eastoutside')
   drawnow;
   % wait for keyboard input, you might want to eventually comment this
+  disp('press any key to continue...');
   pause;
 
 end

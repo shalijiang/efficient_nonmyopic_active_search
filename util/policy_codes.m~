@@ -1,0 +1,8 @@
+% policies are hard coded with numbers
+% For seque
+BATCH_GREEDY   = 1;  % batch greedy policy: choose the point(s) with highest probabilities
+BATCH_ENS      = 2;  % batch ENS policy
+% sequential simulation with "pessimistic oracle"
+SEQ_SIM_ONE_STEP = 13;  % sequential simulation of one-step policy
+SEQ_SIM_TWO_STEP = 23; % sequential simulation of two-step policy
+SEQ_SIM_ENS = 33;  % sequential simulation of ENS policy

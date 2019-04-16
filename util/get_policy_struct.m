@@ -5,18 +5,8 @@ if policy_num == 1
   policy.name = 'greedy';
 elseif policy_num == 2
   policy.name = 'batch-ens';
-elseif policy_num > 2 && policy_num < 3
-  portion = policy_num - 2;
-  policy.name = sprintf('batch-ens-%g', portion);
 elseif policy_num == 3
   policy.name = 'random-greedy';
-elseif policy_num == 4
-  policy.name = 'batch-two-step';
-elseif policy_num > 4 && policy_num < 5  % 4.xy means next_batch_size = yx 
-  % trailing zeros is meaningless
-  policy_str = num2str(policy_num);
-  next_batch_size = str2double(policy_str(end:-1:3));
-  policy.name = sprintf('batch-two-step-%d', next_batch_size);
 elseif policy_num > 6 && policy_num < 7  % used for rebuttal
   policy.transition_ratio = policy_num - 6;
   policy.name = 'uncertainty-greedy';

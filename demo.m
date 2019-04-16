@@ -1,30 +1,35 @@
 addpath(genpath('./'));
+% also add "active_learning" and "active_search" to path
+% addpath(genpath('path_to_active_learning')); %https://github.com/rmgarnett/active_learning.git
+% addpath(genpath('path_to_active_search')); %https://github.com/rmgarnett/active_search.git
 
 data_dir   = './data';
-which_data = {'toy_problem1', 'citeseer_data', 'ecfp1'};
-% parameters
-data_index          = 1;
+which_data = {'toy_problem0', 'toy_problem1', 'citeseer_data', 'ecfp1'};
+% To run for citeseer_data: run ./data/citeseer/prepare_venue_subgraph.m to
+% produce the data first
+% To run for drug discovery data: follow intructions from https://github.com/rmgarnett/active_virtual_screening.git
+% generate the target_xxx_ecfp4_nearest_neighbors_xxx.mat and put them
+% under ./data/ecfp4/
+data_index          = 2;  
 data_name           = which_data{data_index};
-data_path           = fullfile(data_dir, data_name);
 
-% policies are hard coded with numbers
-BATCH_GREEDY   = 1;  % batch greedy policy: choose the point(s) with highest probabilities
-BATCH_ENS      = 2;  % batch ENS policy
-% sequential simulation with "pessimistic oracle"
-SEQ_SIM_ONE_STEP = 13;  % sequential simulation of one-step policy
-SEQ_SIM_TWO_STEP = 23; % sequential simulation of two-step policy
-SEQ_SIM_ENS = 33;  % sequential simulation of ENS policy
+policy_codes  % defines policies coded by constant numbers
+policies            = [GREEDY, SS_TWO_0, BATCH_ENS];
 
-policies            = [BATCH_GREEDY, SEQ_SIM_TWO_STEP, BATCH_ENS];
-
-num_initial         = 1;
-num_queries         = 5; % number of batch queries
-batch_size          = 1;  % number of points in each batch query
-num_experiments     = 5;
-num_policies        = length(policies);
-verbose             = 0;
-total_num_queries   = num_queries * batch_size;
+% set this to 1 if you want to plot the selected point (2D problem only)
 visualize           = 0;
+% set this to 1 if you want to print info for every iteration
+verbose             = 1;
+
+% if batch_size = 1, perform fully sequential active search
+batch_size          = 1;  % number of points in each batch query
+num_queries         = 20; % number of batch queries
+total_num_queries   = num_queries * batch_size;
+
+num_initial         = 1;  % number of initial positive training points 
+
+num_experiments     = 3;  % number of experiments to repeat 
+num_policies        = length(policies);
 
 %% load data
 [problem, labels, weights, alpha, nearest_neighbors, similarities] = ...
@@ -47,12 +52,13 @@ num_targets = nan(total_num_queries, num_experiments, num_policies);
 for pp = 1:length(policies)
   policy = policies(pp);
   
+  %% set up the function of bounding the probabilities
   if policy == 2 || policy > 30
     tight_level = 4;
     probability_bound = get_probability_bound_improved(...
       @knn_probability_bound_improved, ...
       tight_level, weights, nearest_neighbors', similarities', alpha);
-  else
+  else 
     probability_bound = get_probability_bound(@knn_probability_bound, ...
       weights, full(max(weights)), alpha);
   end
@@ -75,7 +81,7 @@ for pp = 1:length(policies)
     fprintf('\nRunning policy %d experiment %d...\n', policy, experiment);
     
     %% randomly sample num_initial positives as initial training data
-    train_ind = [randsample(pos_ind, num_initial)];
+    train_ind = randsample(pos_ind, num_initial);
     
     observed_labels = labels(train_ind);
 
