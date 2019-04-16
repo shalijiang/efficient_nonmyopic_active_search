@@ -14,7 +14,7 @@ A 3-minute video introducing efficient nonmyopic batch active search: https://ww
 # How to use
 Download the code and run 
 
-`>> demo.m` 
+`>> demo` 
 
 in Matlab to see how to use it. 
 
