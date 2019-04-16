@@ -12,7 +12,15 @@ Efficient Nonmyopic Batch Active Search. NeurIPS 2018. https://papers.nips.cc/pa
 A 3-minute video introducing efficient nonmyopic batch active search: https://www.youtube.com/watch?v=9y1HNY95LzY&feature=youtu.be
 
 # How to use
-Download the code and run `demo.m` in Matlab to see how to use it. Change parameter settings to try different datasets and policies. 
+Download the code and run 
+
+`>> demo.m` 
+
+in Matlab to see how to use it. 
+
+Change parameter settings to try different datasets and policies. 
+
+The code is partially tested on Ubuntu 18.04 with Matlab 2017b. If you want to run on other systems, you may need to recompile ./score_function/merge_sort.cpp with: mex ./score_function/merge_sort.cpp
 
 # Dependencies
 Active learning toolbox: https://github.com/rmgarnett/active_learning.git 
