@@ -1,0 +1,15 @@
+*.DS_store
+*.log
+*.aux
+*.gz
+*.bbl
+*.blg
+*.auxlock
+*.pdf
+*.md5
+*.out
+*.dpth
+results*
+*.mat
+*results
+*.sh.*
