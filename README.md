@@ -12,7 +12,9 @@ Efficient Nonmyopic Batch Active Search. NeurIPS 2018. https://papers.nips.cc/pa
 A 3-minute video introducing efficient nonmyopic batch active search: https://www.youtube.com/watch?v=9y1HNY95LzY&feature=youtu.be
 
 # How to use
-Download the code and run 
+Download the code,
+and checkout "demo.m" line 1-4 to see how to add dependencies,
+then run 
 
 `>> demo` 
 
