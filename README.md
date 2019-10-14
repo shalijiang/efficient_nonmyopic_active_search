@@ -28,3 +28,5 @@ Active learning toolbox: https://github.com/rmgarnett/active_learning.git
 Active search toolbox: https://github.com/rmgarnett/active_search.git 
 
 For drug discovery datasets: https://github.com/rmgarnett/active_virtual_screening.git
+
+GPML package to generate toy problem: http://www.gaussianprocess.org/gpml/code/matlab/doc/
