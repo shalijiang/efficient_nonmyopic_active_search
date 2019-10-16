@@ -5,6 +5,8 @@
 % This allows easy parameterization of the policies using different parts
 % of the numbers.
 % The names of the constants defined here match the names in the paper.
+%
+% see util/get_policy_struct.m for the correspondance
 
 %% The sequential policies in Jiang et al. (2017) paper (see Section 5) 
 % are coded as follows (run with batch size 1):
@@ -17,6 +19,7 @@ IMS      = 43;
 %% The batch policies in Jiang et al. (2018) (see Section 5) 
 GREEDY     = 1;  % same as one-step
 BATCH_ENS  = 2;  % share the same code with ENS
+
 
 %% Sequential simulation policies
 % two digits interger "xy" in {1:3} \times {1:5}
@@ -46,7 +49,17 @@ SS_ENS_0 = 33;
 SS_ENS_1 = 34;
 
 %% cost effective active search policies (NeurIPS 2019) 
+% a few examples 
 CENS20 = 5.102;
 CENS30 = 5.103; 
 CENS0_1 = 5.21;
 CENS0_2 = 5.22;
+
+%% artifically set the budget for ENS for cost effective setting
+% these are just a few examples 
+% proportional to remaining budget 
+ENS0_3 = 2.3;  % lookahead for 30% of remaining budget 
+ENS0_5 = 2.5;  % lookahead for 50% of remaining budget 
+% constant 
+ENS10 = 4.01;  % lookahead 10 steps 
+ENS20 = 4.02;  % lookahead 20 steps

@@ -17,7 +17,11 @@ data_name           = which_data{data_index};
 
 which_setting = 2;  % 1 for 'budgeted', 2 for 'min_cost';
 policy_codes  % defines policies coded by constant numbers
-policies            = [CENS20, CENS0_2, GREEDY, SS_TWO_0, BATCH_ENS];
+if which_setting == 1
+  policies = [GREEDY, SS_TWO_0, BATCH_ENS];
+else
+  policies = [GREEDY, SS_TWO_0, ENS0_3, ENS20, CENS20, CENS0_2];
+end
 
 % set this to 1 if you want to plot the selected point (2D problem only)
 visualize           = 0;
