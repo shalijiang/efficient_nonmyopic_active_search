@@ -8,6 +8,8 @@ end
 selector    = get_selector(@unlabeled_selector);
 batch_size  = problem.batch_size;
 policy_name = policy.name;
+% probability_bound = get_probability_bound(@knn_probability_bound, ...
+%   weights, full(max(weights)), alpha);
 
 if ismember(policy_name, {'greedy', 'random-greedy'})
   
@@ -21,7 +23,7 @@ if ismember(policy_name, {'greedy', 'random-greedy'})
   end
   
 elseif  contains(policy_name, 'batch-')
-  % max_num_samples is only for batch_ens
+  % max_num_samples if only for batch_ens
   if ~exist('max_num_samples', 'var') || isempty(max_num_samples)
     max_num_samples = 16;
   end
@@ -49,12 +51,15 @@ elseif strcmp(policy_name, 'sequential')
   %  .subname
   %  .fiction_label
   %  .selector
-
+  
+  
   subpolicy_name = policy.subname;
   
   switch subpolicy_name
     
     case 'myopic'
+      %         probability_bound = get_probability_bound(@knn_probability_bound, ...
+      %       weights, full(max(weights)), alpha);
       lookahead = policy.lookahead;
       selectors = cell(lookahead, 1);
       for i = 1:lookahead
@@ -73,6 +78,13 @@ elseif strcmp(policy_name, 'sequential')
       sub_query_strategy = get_query_strategy(@argmax, score_function);
       
     case 'ens'
+      %         fiction_selector = get_selector(@approx_exp_bound_selector, ...
+      %           model, probability_bound, 1, weights);
+      %         score_function = get_score_function(@approximate_expected_utility, ...
+      %           model, weights);
+      %
+      %         sub_query_strategy = get_query_strategy(@argmax, score_function);
+      
       fiction_selector = get_selector(@unlabeled_selector);
       sub_query_strategy = get_query_strategy(@ens_with_pruning, ...
         model, weights, probability_bound);
@@ -93,11 +105,16 @@ elseif strcmp(policy_name, 'sequential')
       fiction_oracle = get_label_oracle(@fixed_oracle, 0);
     case 'always1'
       fiction_oracle = get_label_oracle(@fixed_oracle, 1);
+    case 'soft'
+      fiction_oracle = get_label_oracle(@soft_prob_oracle, model);
   end
   
   query_strategy = get_query_strategy(@sequential_simulation_batch_iter,...
     batch_size, sub_query_strategy, fiction_oracle, fiction_selector);
-
+elseif strcmp(policy_name, 'cens')
+  query_strategy = get_query_strategy(@ens_min_cost, ...
+        model, weights, probability_bound, policy.approx, ...
+        policy.cutoff, policy.approx_one, policy.adapt);
 elseif strcmp(policy_name, 'uncertainty-greedy')
   query_strategy = get_query_strategy(@uncertainty_greedy, ...
         model, policy.transition_ratio);

@@ -1,9 +1,11 @@
-addpath(genpath('~/Dropbox/packages/'))
-side_length = 50;
+% addpath for GPML http://www.gaussianprocess.org/gpml/code/matlab/doc/
+% change this line accordingly
+addpath(genpath('~/Dropbox/packages/gpml-matlab-v3.6-2015-07-07/'));
+side_length = 100;
 latent_mean = -1;
 length_scale = 3;
 output_scale = 1;
-num_points = 2500;
+num_points = 5000;
 [points, probabilities, K] = ...
   generate_world(side_length, latent_mean, length_scale, output_scale, num_points);
 
@@ -21,6 +23,6 @@ close all
 labels_deterministic = probabilities > 0.7;
 % figure; imagesc(reshape(labels_deterministic, side_length, side_length));
 
-dataname = sprintf('toy_problem.mat');
+dataname = sprintf('./data/toy_problem/toy_problem.mat');
 save(dataname, 'labels_random', 'labels_deterministic', 'problem');
 

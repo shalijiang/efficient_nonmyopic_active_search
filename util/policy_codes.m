@@ -44,3 +44,9 @@ SS_ENS_S = 31;
 SS_ENS_M = 32;
 SS_ENS_0 = 33;
 SS_ENS_1 = 34;
+
+%% cost effective active search policies (NeurIPS 2019) 
+CENS20 = 5.102;
+CENS30 = 5.103; 
+CENS0_1 = 5.21;
+CENS0_2 = 5.22;

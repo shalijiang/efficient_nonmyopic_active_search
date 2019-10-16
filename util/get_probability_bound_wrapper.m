@@ -1,0 +1,13 @@
+function probability_bound = get_probability_bound_wrapper(...
+  policy, weights, nearest_neighbors, similarities, alpha)
+if policy == 2 || policy > 30 || (policy >= 5 && policy < 6)
+  tight_level = 4;
+  probability_bound = get_probability_bound_improved(...
+    @knn_probability_bound_improved, ...
+    tight_level, weights, nearest_neighbors', similarities', alpha);
+else
+  probability_bound = get_probability_bound(@knn_probability_bound, ...
+    weights, full(max(weights)), alpha);
+end
+end
+
