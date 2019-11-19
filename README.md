@@ -9,7 +9,7 @@ Efficient Nonmyopic Active Search. ICML 2017. http://proceedings.mlr.press/v70/j
 Efficient Nonmyopic Batch Active Search. NeurIPS 2018. https://papers.nips.cc/paper/7387-efficient-nonmyopic-batch-active-search
 
 [3]. Shali Jiang, Benjamin Moseley, Roman Garnett. 
-Cost Effective Active Search. NeurIPS 2019.
+Cost Effective Active Search. NeurIPS 2019. https://papers.nips.cc/paper/8734-cost-effective-active-search.pdf
 
 # Video
 A 3-minute video introducing efficient nonmyopic batch active search: https://www.youtube.com/watch?v=9y1HNY95LzY&feature=youtu.be
